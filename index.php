@@ -1,25 +1,26 @@
 <?php
 error_reporting(E_ALL);
-ini_set( "display_errors", "on" );
+ini_set("display_errors", "on");
 
-include_once __DIR__ . '/stack.php';
+include_once __DIR__ . '/priorityqueue.php';
 
-// PILA (LIFO)
-echo "creo la pila".PHP_EOL;
-$pila= new Stack();
-var_dump($pila); //pila vacía
-echo "agrego tres elementos: alice, bob y john e imprimo la pila y la cantidad de elementos".PHP_EOL;
-$pila->add('alice');
-$pila->add('bob');
-$pila->add('john');
-var_dump($pila); //muestra los 3 elementos
-var_dump($pila->count()); // Prints 3
+// COLA CON PRIORIDAD
+echo "creo la cola con prioridad";
+$colaprioridad = new PriorityQueue();
+var_dump($colaprioridad); //cola vacía
 
-echo "quito el primer elemento de la PILA, imprimo dicho primer elemento y la PILA sin dicho elemento".PHP_EOL;
-$primero = $pila->get();
-var_dump($primero); //muestra alice
-var_dump($pila); //muestra la cola sin alice
+echo "agrego tres elementos: alice, bob y john e imprimo la cola y la cantidad de elementos";
+$colaprioridad->add('alice', 2);
+$colaprioridad->add('bob', 0);
+$colaprioridad->add('john', 1);
+var_dump($colaprioridad); //muestra los 3 elementos
+var_dump($colaprioridad->count()); // Prints 3
 
-echo "pregunto si john y luego si bob están en la cola".PHP_EOL;
-var_dump($pila->contains('john')); //false
-var_dump($pila->contains('bob')); //tru
+echo "quito el primer elemento de la cola, imprimo dicho primer elemento y la cola sin dicho elemento";
+$primero = $colaprioridad->get(); // bob porque tiene prioridad 0
+var_dump($primero); //muestra bob
+var_dump($colaprioridad); //muestra la cola sin bob
+
+echo "pregunto si alice y luego si bob están en la cola";
+var_dump($colaprioridad->contains('alice')); //true
+var_dump($colaprioridad->contains('bob')); //false
