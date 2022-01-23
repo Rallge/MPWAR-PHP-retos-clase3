@@ -2,25 +2,24 @@
 error_reporting(E_ALL);
 ini_set( "display_errors", "on" );
 
-include_once __DIR__ . '/queue.php';
+include_once __DIR__ . '/stack.php';
 
-// COLA (FIFO)
-echo "creo la cola".PHP_EOL;
-$cola = new Queue();
-var_dump($cola); //cola vacía
+// PILA (LIFO)
+echo "creo la pila".PHP_EOL;
+$pila= new Stack();
+var_dump($pila); //pila vacía
+echo "agrego tres elementos: alice, bob y john e imprimo la pila y la cantidad de elementos".PHP_EOL;
+$pila->add('alice');
+$pila->add('bob');
+$pila->add('john');
+var_dump($pila); //muestra los 3 elementos
+var_dump($pila->count()); // Prints 3
 
-echo "agrego tres elementos: alice, bob y john e imprimo la cola y la cantidad de elementos".PHP_EOL;
-$cola->add('alice');
-$cola->add('bob');
-$cola->add('john');
-var_dump($cola); //muestra los 3 elementos
-var_dump($cola->count()); // Prints 3
-
-echo "quito el primer elemento de la cola, imprimo dicho primer elemento y la cola sin dicho elemento".PHP_EOL;
-$primero = $cola->get();
+echo "quito el primer elemento de la PILA, imprimo dicho primer elemento y la PILA sin dicho elemento".PHP_EOL;
+$primero = $pila->get();
 var_dump($primero); //muestra alice
-var_dump($cola); //muestra la cola sin alice
+var_dump($pila); //muestra la cola sin alice
 
-echo "pregunto si alice y luego si bob están en la cola".PHP_EOL;
-var_dump($cola->contains('alice')); //false
-var_dump($cola->contains('bob')); //true
+echo "pregunto si john y luego si bob están en la cola".PHP_EOL;
+var_dump($pila->contains('john')); //false
+var_dump($pila->contains('bob')); //tru
